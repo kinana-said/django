@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework_simplejwt',
     'tickets',
+    'users',
+    'rest_framework_simplejwt.token_blacklist',
+    'todo',
 
 ]
 
@@ -88,6 +91,7 @@ REST_FRAMEWORK = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -128,3 +132,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+from datetime import timedelta
+SIMPLE_JWT={
+    "ACCESS_TOKEN_LIFETIME":timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME":timedelta(days=7),
+    "BLACKLIST_AFTER_ROTATION":True,
+}
