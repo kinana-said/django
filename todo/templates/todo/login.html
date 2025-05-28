@@ -1,0 +1,58 @@
+{% extends "todo/base.html" %}
+
+{% block title %}تسجيل الدخول{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</h4>
+            </div>
+            <div class="card-body">
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    اسم المستخدم أو كلمة المرور غير صحيحة. الرجاء المحاولة مرة أخرى.
+                </div>
+                {% endif %}
+                
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="id_username" class="form-label">
+                            <i class="fas fa-user"></i> اسم المستخدم
+                        </label>
+                        <input type="text" class="form-control" id="id_username" 
+                               name="username" required autofocus>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="id_password" class="form-label">
+                            <i class="fas fa-lock"></i> كلمة المرور
+                        </label>
+                        <input type="password" class="form-control" id="id_password" 
+                               name="password" required>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                        </button>
+                    </div>
+                    
+                    <div class="text-center">
+                     
+                    </div>
+                </form>
+                
+                <hr>
+                
+                <div class="text-center">
+                    <p>ليس لديك حساب؟ <a href="{% url 'register' %}">انشئ حساب جديد</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "todo/base.html" %}
+
+{% block title %}تسجيل حساب جديد{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">تسجيل حساب جديد</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            {% for field, errors in form.errors.items %}
+                                {% for error in errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    <div class="mb-3">
+                        <label for="id_username" class="form-label">اسم المستخدم</label>
+                        <input type="text" class="form-control" id="id_username" name="username" 
+                               required autofocus>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="id_password1" class="form-label">كلمة المرور</label>
+                        <input type="password" class="form-control" id="id_password1" 
+                               name="password1" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="id_password2" class="form-label">تأكيد كلمة المرور</label>
+                        <input type="password" class="form-control" id="id_password2" 
+                               name="password2" required>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">تسجيل الحساب</button>
+                    </div>
+                </form>
+                
+                <hr>
+                
+                <div class="text-center">
+                    <p>لديك حساب بالفعل؟ <a href="{% url 'login' %}">سجل الدخول هنا</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
